@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ```
 project
@@ -82,3 +83,8 @@ project
 └─ vite.config.ts
 
 ```
+=======
+# NextStep
+Alumni database management
+adaddsdsdsw
+>>>>>>> 67deba7f6a4dac638dc349c93b791a28bdb6eed0
