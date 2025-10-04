@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, BookOpen, Target, Users, Calendar, MessageCircle, TrendingUp, Settings, Bell, Search, Code, Trophy, UserPlus, Lightbulb, MapPin, Star, Heart, Zap, Brain, Shield, Award, Coffee, Briefcase, FileText, ExternalLink, Clock, CheckCircle, Users2, MessageSquare, Hash, Globe, Rocket, PartyPopper, Activity, BarChart3, PieChart, LineChart, ArrowUpRight, ArrowDownRight, Cpu, Database, Server, Cloud } from 'lucide-react';
+import { User, BookOpen, Target, Users, Calendar, MessageCircle, TrendingUp, Settings, Bell, Search, Code, Trophy, UserPlus, Lightbulb, MapPin, Star, Heart, Zap, Brain, Shield, Award, Coffee, Briefcase, FileText, ExternalLink, Clock, CheckCircle, Users2, MessageSquare, Hash, Globe, Rocket, PartyPopper, Activity, BarChart3, PieChart, LineChart, ArrowUpRight, ArrowDownRight, Cpu, Database, Server, Cloud, Building, Layers, MessageSquareText, X, GraduationCap } from 'lucide-react';
 import { Student } from '../../App';
+
 
 interface StudentDashboardProps {
   user: Student;
   onLogout: () => void;
 }
+
 
 // ✅ Modern Chart Component
 const ModernChart: React.FC<{ type: 'line' | 'bar' | 'pie'; data: any; className?: string }> = ({ type, data, className = '' }) => {
@@ -58,6 +60,7 @@ const ModernChart: React.FC<{ type: 'line' | 'bar' | 'pie'; data: any; className
     );
   }
 
+
   return (
     <div className={`relative h-32 flex items-center justify-center ${className}`}>
       <div className="relative w-24 h-24">
@@ -88,16 +91,53 @@ const ModernChart: React.FC<{ type: 'line' | 'bar' | 'pie'; data: any; className
   );
 };
 
+
 // ✅ Modern AI Matching Component
 const AIMatchingDemo: React.FC = () => {
   const [formData, setFormData] = useState({
     careerGoal: '',
     skills: '',
-    experience: '',
-    location: ''
+    dreamOrganizations: '',
+    industryFocus: '',
+    communicationStyle: '',
+    specificGoals: ''
   });
   const [showResults, setShowResults] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const industryOptions = [
+    'Technology & Software',
+    'Finance & Banking',
+    'Healthcare & Life Sciences',
+    'Consulting',
+    'E-commerce & Retail',
+    'Media & Entertainment',
+    'Automotive & Manufacturing',
+    'Energy & Sustainability',
+    'Education & EdTech',
+    'Aerospace & Defense'
+  ];
+
+  const communicationOptions = [
+    'Weekly Video Calls',
+    'Bi-weekly Check-ins',
+    'Monthly Deep Dives',
+    'Async Messaging',
+    'Project-based Reviews',
+    'On-demand Support'
+  ];
+
+  const goalOptions = [
+    'Job Interview Preparation',
+    'Technical Skill Building',
+    'Career Transition Guidance',
+    'Leadership Development',
+    'Startup & Entrepreneurship',
+    'Industry Network Building',
+    'Personal Branding',
+    'Salary Negotiation'
+  ];
+
 
   const mentorMatches = [
     {
@@ -141,6 +181,7 @@ const AIMatchingDemo: React.FC = () => {
     }
   ];
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsAnalyzing(true);
@@ -150,9 +191,11 @@ const AIMatchingDemo: React.FC = () => {
     }, 2000);
   };
 
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
 
   return (
     <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-2xl p-8 border border-slate-700/50 shadow-2xl">
@@ -164,11 +207,15 @@ const AIMatchingDemo: React.FC = () => {
         <p className="text-slate-400 text-lg font-light">Discover your perfect mentor using advanced AI</p>
       </div>
 
+
       {!showResults ? (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-slate-300">Career Goal</label>
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <Target className="w-4 h-4 mr-2" />
+                Career Goal
+              </label>
               <input
                 type="text"
                 value={formData.careerGoal}
@@ -180,7 +227,10 @@ const AIMatchingDemo: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-slate-300">Skills</label>
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <Code className="w-4 h-4 mr-2" />
+                Current Skills & Technologies
+              </label>
               <input
                 type="text"
                 value={formData.skills}
@@ -192,30 +242,73 @@ const AIMatchingDemo: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-slate-300">Experience Level</label>
-              <select
-                value={formData.experience}
-                onChange={(e) => handleInputChange('experience', e.target.value)}
-                className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-white backdrop-blur-sm text-sm"
-                required
-              >
-                <option value="" className="bg-slate-800 text-slate-300">Select Experience</option>
-                <option value="beginner" className="bg-slate-800 text-white">Beginner (0-1 years)</option>
-                <option value="intermediate" className="bg-slate-800 text-white">Intermediate (1-3 years)</option>
-                <option value="advanced" className="bg-slate-800 text-white">Advanced (3+ years)</option>
-              </select>
-            </div>
-            
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-slate-300">Preferred Location</label>
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <Building className="w-4 h-4 mr-2" />
+                Dream Organizations
+              </label>
               <input
                 type="text"
-                value={formData.location}
-                onChange={(e) => handleInputChange('location', e.target.value)}
-                placeholder="e.g., Bangalore, Remote"
+                value={formData.dreamOrganizations}
+                onChange={(e) => handleInputChange('dreamOrganizations', e.target.value)}
+                placeholder="e.g., Google, Microsoft, Apple, Tesla"
                 className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-white placeholder-slate-400 backdrop-blur-sm text-sm"
                 required
               />
+              <p className="text-xs text-slate-500">Companies you'd love your mentor to work for or have experience with</p>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <Layers className="w-4 h-4 mr-2" />
+                Industry Focus
+              </label>
+              <select
+                value={formData.industryFocus}
+                onChange={(e) => handleInputChange('industryFocus', e.target.value)}
+                className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-white backdrop-blur-sm text-sm"
+                required
+              >
+                <option value="" className="bg-slate-800 text-slate-300">Select your target industry...</option>
+                {industryOptions.map((industry) => (
+                  <option key={industry} value={industry} className="bg-slate-800 text-white">{industry}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <MessageSquareText className="w-4 h-4 mr-2" />
+                Preferred Communication Style
+              </label>
+              <select
+                value={formData.communicationStyle}
+                onChange={(e) => handleInputChange('communicationStyle', e.target.value)}
+                className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-white backdrop-blur-sm text-sm"
+                required
+              >
+                <option value="" className="bg-slate-800 text-slate-300">How would you like to connect?</option>
+                {communicationOptions.map((style) => (
+                  <option key={style} value={style} className="bg-slate-800 text-white">{style}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-slate-300 flex items-center">
+                <Lightbulb className="w-4 h-4 mr-2" />
+                Specific Mentorship Goals
+              </label>
+              <select
+                value={formData.specificGoals}
+                onChange={(e) => handleInputChange('specificGoals', e.target.value)}
+                className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-white backdrop-blur-sm text-sm"
+                required
+              >
+                <option value="" className="bg-slate-800 text-slate-300">What do you want to achieve?</option>
+                {goalOptions.map((goal) => (
+                  <option key={goal} value={goal} className="bg-slate-800 text-white">{goal}</option>
+                ))}
+              </select>
             </div>
           </div>
           
@@ -292,7 +385,7 @@ const AIMatchingDemo: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center text-sm text-slate-400">
                         <Trophy className="w-4 h-4 mr-1 text-yellow-400" />
-                        {mentor.achievements}
+                        {mentor.achievements[0]}
                       </div>
                       <button className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-lg font-medium hover:from-purple-700 hover:to-cyan-700 transition-all duration-200 text-sm">
                         Connect
@@ -318,9 +411,88 @@ const AIMatchingDemo: React.FC = () => {
   );
 };
 
+
 const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) => {
   const [activeSection, setActiveSection] = useState('overview');
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showFindMentorsModal, setShowFindMentorsModal] = useState(false);
+  const [showFindPartnersModal, setShowFindPartnersModal] = useState(false);
+
+  // Find Mentors Form State
+  const [mentorForm, setMentorForm] = useState({
+    expertise: '',
+    hackathon: ''
+  });
+
+  // Find Partners Form State
+  const [partnerForm, setPartnerForm] = useState({
+    domain: '',
+    academicYear: ''
+  });
+
+  const expertiseOptions = [
+    'All Expertise',
+    'Web Development',
+    'Mobile Development',
+    'Machine Learning & AI',
+    'Data Science',
+    'Blockchain',
+    'Cloud Computing',
+    'Cybersecurity',
+    'Game Development',
+    'IoT & Hardware',
+    'AR/VR Development'
+  ];
+
+  const hackathonOptions = [
+    'Any Hackathon',
+    'TechFusion 2025',
+    'CodeStorm Nationals',
+    'InnoHack Summit',
+    'DevSprint Championship',
+    'HackElite Global',
+    'BuildathonX',
+    'SmartHack India'
+  ];
+
+  const domainOptions = [
+    'All Domains',
+    'Frontend Development',
+    'Backend Development',
+    'Full Stack Development',
+    'Mobile App Development',
+    'AI/ML Engineering',
+    'Data Analytics',
+    'UI/UX Design',
+    'DevOps',
+    'Blockchain Development',
+    'Game Development'
+  ];
+
+  const academicYearOptions = [
+    'Any Year',
+    '1st Year',
+    '2nd Year',
+    '3rd Year',
+    '4th Year',
+    'Masters',
+    'PhD'
+  ];
+
+  const handleMentorSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Find Mentors:', mentorForm);
+    // Add your mentor search logic here
+    setShowFindMentorsModal(false);
+  };
+
+  const handlePartnerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Find Partners:', partnerForm);
+    // Add your partner search logic here
+    setShowFindPartnersModal(false);
+  };
+
 
   const stats = [
     { 
@@ -357,11 +529,13 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
     }
   ];
 
+
   const chartData = [
     { name: 'Skill Growth', percentage: 87, type: 'pie' as const },
     { name: 'Weekly Activity', type: 'line' as const },
     { name: 'Performance', type: 'bar' as const }
   ];
+
 
   const recentActivity = [
     { 
@@ -398,6 +572,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
     }
   ];
 
+
   const sidebarItems = [
     { id: 'overview', label: 'Overview', icon: BarChart3 },
     { id: 'ai-matching', label: 'AI Mentorship', icon: Brain },
@@ -408,6 +583,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
     { id: 'messages', label: 'Messages', icon: MessageCircle },
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
+
 
   const renderContent = () => {
     switch (activeSection) {
@@ -442,6 +618,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
               </div>
             </div>
 
+
             {/* Modern Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
@@ -469,6 +646,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
               ))}
             </div>
 
+
             {/* Graphical Panels */}
             <div className="grid md:grid-cols-3 gap-6">
               {chartData.map((chart, index) => (
@@ -491,6 +669,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                 </motion.div>
               ))}
             </div>
+
 
             {/* Modern Activity Feed */}
             <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50">
@@ -529,8 +708,10 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         );
 
+
       case 'ai-matching':
         return <AIMatchingDemo />;
+
 
       case 'connections':
         return (
@@ -549,6 +730,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         );
 
+
       case 'hackathons':
         return (
           <div className="space-y-6">
@@ -566,13 +748,15 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                   title: 'Find Mentors',
                   description: 'Connect with experienced developers and industry experts for guidance',
                   icon: UserPlus,
-                  color: 'from-blue-600 to-cyan-500'
+                  color: 'from-blue-600 to-cyan-500',
+                  onClick: () => setShowFindMentorsModal(true)
                 },
                 {
                   title: 'Find Partners',
                   description: 'Team up with talented individuals to build amazing projects together',
                   icon: Users,
-                  color: 'from-purple-600 to-pink-500'
+                  color: 'from-purple-600 to-pink-500',
+                  onClick: () => setShowFindPartnersModal(true)
                 }
               ].map((item, index) => (
                 <div key={index} className="bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50">
@@ -583,7 +767,10 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                     <h4 className="text-lg font-semibold text-white">{item.title}</h4>
                   </div>
                   <p className="text-slate-400 mb-4 font-light">{item.description}</p>
-                  <button className={`w-full bg-gradient-to-r ${item.color} text-white py-3 rounded-xl hover:shadow-lg transition-all duration-200 font-medium`}>
+                  <button 
+                    onClick={item.onClick}
+                    className={`w-full bg-gradient-to-r ${item.color} text-white py-3 rounded-xl hover:shadow-lg transition-all duration-200 font-medium`}
+                  >
                     {item.title}
                   </button>
                 </div>
@@ -591,6 +778,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
             </div>
           </div>
         );
+
 
       case 'campus-connect':
         return (
@@ -623,6 +811,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         );
 
+
       case 'events':
         return (
           <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50">
@@ -640,6 +829,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         );
 
+
       default:
         return (
           <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50">
@@ -656,6 +846,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
     }
   };
 
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Modern Header */}
@@ -668,6 +859,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
               <h1 className="text-xl font-semibold text-white tracking-tight">NextStep</h1>
             </div>
 
+
             {/* Modern Search Bar */}
             <div className="flex-1 max-w-2xl mx-8">
               <div className="relative">
@@ -679,6 +871,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                 />
               </div>
             </div>
+
 
             {/* Right Section */}
             <div className="flex items-center space-x-4">
@@ -693,6 +886,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                 </button>
               </div>
 
+
               {/* Profile */}
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
@@ -700,6 +894,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                 </div>
                 <span className="hidden md:block text-sm font-medium text-white">{user.name}</span>
               </div>
+
 
               {/* Logout */}
               <button
@@ -712,6 +907,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         </div>
       </header>
+
 
       <div className="flex">
         {/* Modern Sidebar */}
@@ -736,6 +932,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </div>
         </nav>
 
+
         {/* Main Content */}
         <main className="flex-1 p-8">
           <AnimatePresence mode="wait">
@@ -751,6 +948,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </AnimatePresence>
         </main>
       </div>
+
 
       {/* Modern Notifications Dropdown */}
       <AnimatePresence>
@@ -784,8 +982,195 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Find Mentors Modal */}
+      <AnimatePresence>
+        {showFindMentorsModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-900/95 backdrop-blur-xl rounded-2xl p-8 max-w-md w-full border border-slate-700/50 shadow-2xl"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl p-3">
+                    <UserPlus className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">Find Mentors</h2>
+                    <p className="text-slate-400 text-sm">Connect with expert developers</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowFindMentorsModal(false)}
+                  className="text-slate-400 hover:text-white p-2"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <form onSubmit={handleMentorSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-slate-300 flex items-center">
+                    <Code className="w-4 h-4 mr-2" />
+                    Expertise In
+                  </label>
+                  <select
+                    value={mentorForm.expertise}
+                    onChange={(e) => setMentorForm(prev => ({ ...prev, expertise: e.target.value }))}
+                    className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white backdrop-blur-sm text-sm"
+                    required
+                  >
+                    <option value="" className="bg-slate-800">Select expertise...</option>
+                    {expertiseOptions.map((option) => (
+                      <option key={option} value={option} className="bg-slate-800">{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-slate-300 flex items-center">
+                    <Trophy className="w-4 h-4 mr-2" />
+                    For Which Hackathon
+                  </label>
+                  <select
+                    value={mentorForm.hackathon}
+                    onChange={(e) => setMentorForm(prev => ({ ...prev, hackathon: e.target.value }))}
+                    className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white backdrop-blur-sm text-sm"
+                    required
+                  >
+                    <option value="" className="bg-slate-800">Select hackathon...</option>
+                    {hackathonOptions.map((option) => (
+                      <option key={option} value={option} className="bg-slate-800">{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex space-x-4 pt-4">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 px-6 rounded-xl font-medium hover:from-blue-700 hover:to-cyan-600 transition-all shadow-lg"
+                  >
+                    Search Mentors
+                  </motion.button>
+                  <button
+                    type="button"
+                    onClick={() => setShowFindMentorsModal(false)}
+                    className="px-6 py-3 border border-slate-600 text-slate-300 rounded-xl hover:border-slate-500 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Find Partners Modal */}
+      <AnimatePresence>
+        {showFindPartnersModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-900/95 backdrop-blur-xl rounded-2xl p-8 max-w-md w-full border border-slate-700/50 shadow-2xl"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl p-3">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">Find Partners</h2>
+                    <p className="text-slate-400 text-sm">Team up for hackathons</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowFindPartnersModal(false)}
+                  className="text-slate-400 hover:text-white p-2"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <form onSubmit={handlePartnerSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-slate-300 flex items-center">
+                    <Layers className="w-4 h-4 mr-2" />
+                    Which Domain
+                  </label>
+                  <select
+                    value={partnerForm.domain}
+                    onChange={(e) => setPartnerForm(prev => ({ ...prev, domain: e.target.value }))}
+                    className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white backdrop-blur-sm text-sm"
+                    required
+                  >
+                    <option value="" className="bg-slate-800">Select domain...</option>
+                    {domainOptions.map((option) => (
+                      <option key={option} value={option} className="bg-slate-800">{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-slate-300 flex items-center">
+                    <GraduationCap className="w-4 h-4 mr-2" />
+                    Academic Year
+                  </label>
+                  <select
+                    value={partnerForm.academicYear}
+                    onChange={(e) => setPartnerForm(prev => ({ ...prev, academicYear: e.target.value }))}
+                    className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white backdrop-blur-sm text-sm"
+                    required
+                  >
+                    <option value="" className="bg-slate-800">Select academic year...</option>
+                    {academicYearOptions.map((option) => (
+                      <option key={option} value={option} className="bg-slate-800">{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex space-x-4 pt-4">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-6 rounded-xl font-medium hover:from-purple-700 hover:to-pink-600 transition-all shadow-lg"
+                  >
+                    Search Partners
+                  </motion.button>
+                  <button
+                    type="button"
+                    onClick={() => setShowFindPartnersModal(false)}
+                    className="px-6 py-3 border border-slate-600 text-slate-300 rounded-xl hover:border-slate-500 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
+
 
 export default StudentDashboard;

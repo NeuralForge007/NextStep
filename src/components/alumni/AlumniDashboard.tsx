@@ -54,7 +54,7 @@ const ModernChart: React.FC<{ type: 'line' | 'bar' | 'pie'; data: any; className
         {bars.map((height, index) => (
           <motion.div
             key={index}
-            className="bg-gradient-to-t from-purple-600 via-fuchsia-500 to-cyan-400 rounded-t-sm shadow-lg shadow-purple-500/30"
+            className="bg-gradient-to-t from-purple-600 via-fuchsia-500 to-cyan-400 rounded-t-sm shadow-lg shadow-lg"
             style={{ height: `${height}%`, width: '12%' }}
             initial={{ height: 0 }}
             animate={{ height: `${height}%` }}
@@ -127,7 +127,7 @@ const MentorshipRequestCard: React.FC<{ request: any; onAccept: () => void; onDe
           </div>
           
           <div className="space-y-1 mb-3">
-            <p className="text-sm text-purple-200">{request.student.course} • {request.student.year}</p>
+            <p className="text-sm text-slate-300">{request.student.course} • {request.student.year}</p>
             <p className="text-xs text-purple-300">{request.student.college} • {request.student.location}</p>
             <div className="flex flex-wrap gap-1 mt-2">
               {request.student.skills?.slice(0, 3).map((skill: string, index: number) => (
@@ -198,15 +198,15 @@ const CollegeEventCard: React.FC<{ event: any; onRespond: (response: string) => 
           </div>
           
           <div className="space-y-2 mb-4">
-            <div className="flex items-center text-sm text-purple-200">
+            <div className="flex items-center text-sm text-slate-300">
               <Building className="w-4 h-4 mr-2 text-purple-400" />
               {event.college}
             </div>
-            <div className="flex items-center text-sm text-purple-200">
+            <div className="flex items-center text-sm text-slate-300">
               <Calendar className="w-4 h-4 mr-2 text-purple-400" />
               {event.date} • {event.time}
             </div>
-            <div className="flex items-center text-sm text-purple-200">
+            <div className="flex items-center text-sm text-slate-300">
               <MapPin className="w-4 h-4 mr-2 text-purple-400" />
               {event.location}
             </div>
@@ -408,7 +408,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
       time: '1 day ago', 
       type: 'session', 
       icon: Coffee, 
-      color: 'text-fuchsia-400',
+      color: 'text-cyan-400',
       description: 'Career guidance for Sneha Reddy'
     }
   ];
@@ -442,11 +442,11 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
         return (
           <div className="space-y-8">
             {/* Enhanced Welcome Section */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950/90 via-purple-950/95 to-fuchsia-950/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
+            <div className="relative overflow-hidden bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
               {/* Animated background elements */}
               <div className="absolute inset-0 overflow-hidden rounded-3xl">
                 <div className="absolute -top-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-fuchsia-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-cyan-600/20 rounded-full blur-xl animate-pulse delay-1000"></div>
               </div>
               
               <div className="relative z-10">
@@ -456,7 +456,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                       Welcome back, {user.name}
                       <Crown className="w-8 h-8 ml-3 text-yellow-400" />
                     </h2>
-                    <p className="text-purple-200 text-lg font-light">
+                    <p className="text-slate-300 text-lg font-light">
                       {user.position} at {user.company} • {user.experience} years experience
                     </p>
                     <div className="mt-4 flex items-center space-x-4">
@@ -470,8 +470,8 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    <div className="w-24 h-24 bg-gradient-to-br from-purple-600/30 via-fuchsia-600/20 to-cyan-600/30 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-purple-500/30 shadow-lg">
-                      <User className="w-12 h-12 text-purple-200" />
+                    <div className="w-24 h-24 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-purple-500/30 shadow-lg">
+                      <User className="w-12 h-12 text-slate-300" />
                     </div>
                   </div>
                 </div>
@@ -486,13 +486,13 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="relative overflow-hidden bg-gradient-to-br from-indigo-950/70 via-purple-950/80 to-fuchsia-950/70 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 group"
+                  className="relative overflow-hidden bg-gradient-to-br from-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20 hover:border-slate-600/50 transition-all duration-300 group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-fuchsia-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-4">
-                      <div className={`p-3 bg-gradient-to-br ${stat.color} rounded-xl shadow-lg shadow-purple-500/30`}>
+                      <div className={`p-3 bg-gradient-to-br ${stat.color} rounded-xl shadow-lg shadow-lg`}>
                         <stat.icon className="w-5 h-5 text-white" />
                       </div>
                       <div className={`flex items-center text-sm font-medium ${stat.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}>
@@ -502,7 +502,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
-                      <p className="text-sm text-purple-200 font-medium">{stat.label}</p>
+                      <p className="text-sm text-slate-300 font-medium">{stat.label}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -517,9 +517,9 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
-                  className="relative overflow-hidden bg-gradient-to-br from-indigo-950/70 via-purple-950/80 to-fuchsia-950/70 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
+                  className="relative overflow-hidden bg-gradient-to-br from-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20 hover:border-slate-600/50 transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-2xl"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-4">
@@ -537,8 +537,8 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
             </div>
 
             {/* Recent Activity Feed */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950/70 via-purple-950/80 to-fuchsia-950/70 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-2xl"></div>
+            <div className="relative overflow-hidden bg-gradient-to-br from-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-2xl"></div>
               
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-6">
@@ -567,7 +567,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                           <p className="font-medium text-white truncate">{item.title}</p>
                           <span className="text-xs text-purple-300 whitespace-nowrap ml-4">{item.time}</span>
                         </div>
-                        <p className="text-sm text-purple-200/70 mt-1">{item.description}</p>
+                        <p className="text-sm text-slate-300/70 mt-1">{item.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -580,14 +580,14 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
       case 'mentorship-requests':
         return (
           <div className="space-y-6">
-            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950/90 via-purple-950/95 to-fuchsia-950/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-3xl"></div>
+            <div className="relative overflow-hidden bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-3xl"></div>
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold text-white mb-4 flex items-center">
                   <Users className="w-8 h-8 mr-3 text-cyan-400" />
                   Mentorship Requests
                 </h2>
-                <p className="text-purple-200 text-lg">
+                <p className="text-slate-300 text-lg">
                   {pendingRequests.length} students are waiting for your response
                 </p>
               </div>
@@ -604,7 +604,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                   />
                 ))
               ) : (
-                <div className="text-center py-16 bg-gradient-to-br from-indigo-950/70 via-purple-950/80 to-fuchsia-950/70 backdrop-blur-xl rounded-2xl border border-purple-500/20">
+                <div className="text-center py-16 bg-gradient-to-br from-slate-900/60 backdrop-blur-xl rounded-2xl border border-purple-500/20">
                   <Users className="w-16 h-16 text-purple-400 mx-auto mb-4" />
                   <p className="text-purple-300 font-medium">No pending mentorship requests</p>
                 </div>
@@ -616,14 +616,14 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
       case 'college-invitations':
         return (
           <div className="space-y-6">
-            <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950/90 via-purple-950/95 to-fuchsia-950/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-3xl"></div>
+            <div className="relative overflow-hidden bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-3xl"></div>
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold text-white mb-4 flex items-center">
                   <Calendar className="w-8 h-8 mr-3 text-emerald-400" />
                   College Events & Invitations
                 </h2>
-                <p className="text-purple-200 text-lg">
+                <p className="text-slate-300 text-lg">
                   Share your expertise and inspire the next generation
                 </p>
               </div>
@@ -643,11 +643,11 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
 
       default:
         return (
-          <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950/70 via-purple-950/80 to-fuchsia-950/70 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 rounded-2xl"></div>
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-2xl"></div>
             <div className="relative z-10">
               <h3 className="text-xl font-semibold text-white mb-4">{activeSection.charAt(0).toUpperCase() + activeSection.slice(1).replace('-', ' ')}</h3>
-              <p className="text-purple-200 font-light">This section is currently under development.</p>
+              <p className="text-slate-300 font-light">This section is currently under development.</p>
               <div className="text-center py-16">
                 <div className="w-16 h-16 bg-black/30 border border-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Sparkles className="w-8 h-8 text-purple-300" />
@@ -728,7 +728,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                   onClick={() => setActiveSection(item.id)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                     activeSection === item.id
-                      ? 'bg-gradient-to-r from-purple-600/30 via-fuchsia-600/20 to-cyan-600/30 text-white border border-purple-500/40 shadow-lg shadow-purple-500/20'
+                      ? 'bg-gradient-to-r from-purple-600/20 to-cyan-600/20 text-white border border-purple-500/40 shadow-lg shadow-purple-500/20'
                       : 'text-purple-300 hover:bg-purple-500/20 hover:text-white'
                   }`}
                 >
@@ -781,7 +781,7 @@ const AlumniDashboard: React.FC<AlumniDashboardProps> = ({ user, onLogout }) => 
                   <div className={`w-2 h-2 ${notif.color} rounded-full mt-2 shadow-lg`}></div>
                   <div>
                     <p className="text-sm font-medium text-white">{notif.title}</p>
-                    <p className="text-xs text-purple-200">{notif.subtitle}</p>
+                    <p className="text-xs text-slate-300">{notif.subtitle}</p>
                   </div>
                 </div>
               ))}

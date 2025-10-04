@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -17,6 +18,7 @@ import AlumniDashboard from './components/alumni/AlumniDashboard';
 import CollegeAdminDashboard from './components/college/CollegeAdminDashboard';
 
 // ✅ COMPLETE INTERFACES FOR EACH ROLE
+
 export interface Student {
   id: string;
   name: string;
@@ -86,9 +88,9 @@ export interface CollegeAdmin {
 export type User = Student | Alumni | CollegeAdmin;
 
 function App() {
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState<string>('home');
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   // Navigation handlers
   const handleStudentAccess = () => {
@@ -123,46 +125,57 @@ function App() {
 
   // Login handlers
   const handleStudentLogin = (student: Student) => {
+    console.log('✅ Student login successful:', student);
     setCurrentUser(student);
     setCurrentView('student-dashboard');
   };
 
   const handleAlumniLogin = (alumni: Alumni) => {
+    console.log('✅ Alumni login successful:', alumni);
     setCurrentUser(alumni);
     setCurrentView('alumni-dashboard');
   };
 
   const handleCollegeAdminLogin = (admin: CollegeAdmin) => {
+    console.log('✅ College Admin login successful:', admin);
     setCurrentUser(admin);
     setCurrentView('admin-dashboard');
   };
 
   // Registration success handlers
   const handleStudentRegistrationSuccess = (student: Student) => {
+    console.log('✅ Student registration successful:', student);
     setCurrentUser(student);
     setCurrentView('student-dashboard');
   };
 
   const handleAlumniRegistrationSuccess = (alumni: Alumni) => {
+    console.log('✅ Alumni registration successful:', alumni);
     setCurrentUser(alumni);
     setCurrentView('alumni-dashboard');
   };
 
   const handleCollegeAdminRegistrationSuccess = (admin: CollegeAdmin) => {
+    console.log('✅ College Admin registration successful:', admin);
     setCurrentUser(admin);
     setCurrentView('admin-dashboard');
   };
 
   const handleLogout = () => {
+    console.log('🔐 User logged out');
     setCurrentUser(null);
     setCurrentView('home');
   };
 
-  // Switch statement
+  // Debug logging
+  console.log('🔍 Current view:', currentView);
+  console.log('👤 Current user:', currentUser?.name || 'None');
+
+  // Render based on current view
   switch (currentView) {
     case 'student-login':
       return (
-        <StudentLogin
+        <StudentLogin 
           onLogin={handleStudentLogin}
           onBackToHome={handleBackToHome}
           onRegister={handleStudentRegister}
@@ -171,7 +184,7 @@ function App() {
 
     case 'alumni-login':
       return (
-        <AlumniLogin
+        <AlumniLogin 
           onLogin={handleAlumniLogin}
           onBackToHome={handleBackToHome}
           onRegister={handleAlumniRegister}
@@ -180,7 +193,7 @@ function App() {
 
     case 'admin-login':
       return (
-        <CollegeAdminLogin
+        <CollegeAdminLogin 
           onLogin={handleCollegeAdminLogin}
           onBackToHome={handleBackToHome}
           onRegister={handleCollegeAdminRegister}
@@ -189,7 +202,7 @@ function App() {
 
     case 'student-registration':
       return (
-        <StudentRegistration
+        <StudentRegistration 
           onRegistrationSuccess={handleStudentRegistrationSuccess}
           onBackToLogin={() => setCurrentView('student-login')}
           onBackToHome={handleBackToHome}
@@ -198,7 +211,7 @@ function App() {
 
     case 'alumni-registration':
       return (
-        <AlumniRegistration
+        <AlumniRegistration 
           onRegistrationSuccess={handleAlumniRegistrationSuccess}
           onBackToLogin={() => setCurrentView('alumni-login')}
           onBackToHome={handleBackToHome}
@@ -207,7 +220,7 @@ function App() {
 
     case 'admin-registration':
       return (
-        <CollegeAdminRegistration
+        <CollegeAdminRegistration 
           onRegistrationSuccess={handleCollegeAdminRegistrationSuccess}
           onBackToLogin={() => setCurrentView('admin-login')}
           onBackToHome={handleBackToHome}
@@ -215,39 +228,79 @@ function App() {
       );
 
     case 'student-dashboard':
-      return currentUser && currentUser.role === 'student' ? (
-        <StudentDashboard
-          student={currentUser as Student}
+      if (!currentUser || currentUser.role !== 'student') {
+        console.log('⚠️ Invalid student user, redirecting to login');
+        setTimeout(() => {
+          setCurrentView('student-login');
+          setCurrentUser(null);
+        }, 2000);
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+              <p className="text-white text-lg">Redirecting to login...</p>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <StudentDashboard 
+          user={currentUser as Student}
           onLogout={handleLogout}
         />
-      ) : (
-        <div>Loading...</div>
       );
 
     case 'alumni-dashboard':
-      return currentUser && currentUser.role === 'alumni' ? (
-        <AlumniDashboard
-          alumni={currentUser as Alumni}
+      if (!currentUser || currentUser.role !== 'alumni') {
+        console.log('⚠️ Invalid alumni user, redirecting to login');
+        setTimeout(() => {
+          setCurrentView('alumni-login');
+          setCurrentUser(null);
+        }, 2000);
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+              <p className="text-white text-lg">Redirecting to login...</p>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <AlumniDashboard 
+          user={currentUser as Alumni}
           onLogout={handleLogout}
         />
-      ) : (
-        <div>Loading...</div>
       );
 
     case 'admin-dashboard':
-      return currentUser && currentUser.role === 'admin' ? (
-        <CollegeAdminDashboard
-          admin={currentUser as CollegeAdmin}
+      if (!currentUser || currentUser.role !== 'admin') {
+        console.log('⚠️ Invalid admin user, redirecting to login');
+        setTimeout(() => {
+          setCurrentView('admin-login');
+          setCurrentUser(null);
+        }, 2000);
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+              <p className="text-white text-lg">Redirecting to login...</p>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <CollegeAdminDashboard 
+          user={currentUser as CollegeAdmin}
           onLogout={handleLogout}
         />
-      ) : (
-        <div>Loading...</div>
       );
 
     default:
+      // Home page
       return (
         <>
-          <Header
+          <Header 
             onStudentAccess={handleStudentAccess}
             onAlumniAccess={handleAlumniAccess}
             onCollegeAdminAccess={handleCollegeAdminAccess}
